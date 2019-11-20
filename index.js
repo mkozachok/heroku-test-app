@@ -17,9 +17,18 @@ app.get('/products', function (req, res) {
 
 app.get('/products/:id', function (req, res) {
     var id = req.params.id;
-    res.status(200).send({data: db.db.find(function(item) {
+    var product = db.db.find(function(item) {
         return item.id == id;
-    })})
+    })
+
+    if (product) {
+        res.status(200).send({data: product})
+    }
+
+    return res.status(404).send({
+        success: 'false',
+        message: 'product not found',
+      });
 });
 
 // POST
@@ -58,5 +67,27 @@ app.post('/products', function (req, res) {
       })
 });
 
+// DELETE
+app.delete('/products/:id', function (req, res) {
+    var id = req.params.id;
+    var product = db.db.find(function(item) {
+        return item.id == id;
+    })
+
+    if (product) {
+        db.db = db.db.filter(function(item) {
+            return item.id !== id
+        })
+        return res.status(200).send({
+            success: 'true',
+            message: 'product deleted successfuly',
+          });
+    }
+
+    return res.status(404).send({
+        success: 'false',
+        message: 'product not found',
+      });
+});
 
 app.listen(process.env.PORT || 5000)
