@@ -34,14 +34,19 @@ app.post('/products', function (req, res) {
           success: 'false',
           message: 'description is required'
         });
+      } else if(!req.body.price) {
+        return res.status(400).send({
+          success: 'false',
+          message: 'price is required'
+        });
       }
 
       var product = {
         id: uuidv1(),
         title: req.body.title,
         description: req.body.description,
-        previewImage: '',
-        price: '0',
+        previewImage: req.body.previewImage | '',
+        price: req.body.price,
       }
 
       db.db.push(product);
