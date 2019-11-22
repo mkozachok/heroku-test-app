@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+import mongoose from 'mongoose'
 
-var productSchema = new mongoose.Schema({
+const productSchema = new mongoose.Schema({
   title: String,
   description: String,
   price: Number,
@@ -10,7 +10,7 @@ var productSchema = new mongoose.Schema({
 });
 
 productSchema.pre('save', function(next) {
-  var currentDate = new Date();
+  const currentDate = new Date();
   this.updated_at = currentDate;
 
   if (!this.created_at)
@@ -19,6 +19,4 @@ productSchema.pre('save', function(next) {
   next();
 });
 
-var Product = mongoose.model('Product', productSchema);
-
-module.exports = Product;
+export const Product = mongoose.model('Product', productSchema);

@@ -1,19 +1,16 @@
-var Product = require('./model')
+import { Product } from "./model";
 
-var create = function(data, callback) {
-  var newProduct = Product(data);
-  newProduct.save(function(err) {
+const create = function(data, callback) {
+  const newProduct = Product(data);
+  newProduct.save(err => {
     if (err) throw err;
     if (callback) {
       callback(newProduct);
     }
-    console.log('Product created!');
+    console.log("Product created!");
   });
-}
+};
 
-var productApi = {
-  create: create
-}
-
-module.exports = productApi;
-
+export const productApi = {
+  create
+};

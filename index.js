@@ -3,7 +3,7 @@ var cors = require('cors');
 var bodyParser = require('body-parser');
 var uuidv1 = require('uuid/v1');
 var mongoose = require('mongoose');
-require('dotenv').config()
+import 'dotenv/config';
 var app = express();
 var db = require('./db');
 
