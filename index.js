@@ -2,12 +2,25 @@ var express = require('express');
 var cors = require('cors');
 var bodyParser = require('body-parser');
 var uuidv1 = require('uuid/v1');
+var mongoose = require('mongoose');
+require('dotenv').config()
 var app = express();
 var db = require('./db');
+
+// API
+var productApi = require('./src/api/product/controller')
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+// Connect to db
+// mongoose.connect(
+//     'mongodb+srv://mkozachok:MTeam2019@cluster0-klifg.mongodb.net/test?retryWrites=true&w=majority',
+//      {useNewUrlParser: true }
+//      );
+
+mongoose.connect(process.env.DB_CONNECT);
 
 // Products API
 // GET
@@ -50,21 +63,29 @@ app.post('/products', function (req, res) {
         });
       }
 
-      var product = {
-        id: uuidv1(),
-        title: req.body.title,
-        description: req.body.description,
-        previewImage: req.body.previewImage | '',
-        price: req.body.price,
-      }
+      // var product = {
+      //   id: uuidv1(),
+      //   title: req.body.title,
+      //   description: req.body.description,
+      //   previewImage: req.body.previewImage | '',
+      //   price: req.body.price,
+      // }
 
-      db.db.push(product);
+      // db.db.push(product);
 
-      return res.status(201).send({
-        success: 'true',
-        message: 'product added successfully',
-        data: product
+      productApi.create(req.body, (newProduct) => {
+        res.status(201).send({
+          success: 'true',
+          message: 'product added successfully',
+          data: newProduct
+        })
       })
+
+      // return res.status(201).send({
+      //   success: 'true',
+      //   message: 'product added successfully',
+      //   data: product
+      // })
 });
 
 // DELETE
