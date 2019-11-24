@@ -38,4 +38,3 @@ app.get("/", function (req, res) {
   });
 });
 app.listen(process.env.PORT || 5000);
-//# sourceMappingURL=index.js.map

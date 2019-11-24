@@ -61,4 +61,3 @@ var productApi = {
   remove: remove
 };
 exports.productApi = productApi;
-//# sourceMappingURL=controller.js.map

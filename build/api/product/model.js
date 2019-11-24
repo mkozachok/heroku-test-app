@@ -27,4 +27,3 @@ productSchema.pre('save', function (next) {
 var Product = _mongoose["default"].model('Product', productSchema);
 
 exports.Product = Product;
-//# sourceMappingURL=model.js.map

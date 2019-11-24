@@ -6,7 +6,7 @@
   "scripts": {
     "start:dev": "nodemon --exec babel-node src/index.js",
     "start": "node ./build/index.js",
-    "build": "babel -d ./build ./src -s",
+    "build": "babel src --out-dir build --copy-files",
     "clean": "rm -rf build && mkdir build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
