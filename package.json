@@ -6,8 +6,9 @@
   "scripts": {
     "start:dev": "nodemon --exec babel-node src/index.js",
     "start": "node ./build/index.js",
-    "build": "babel src --out-dir build --copy-files",
-    "clean": "rm -rf build && mkdir build",
+    "build": "npm run clean && npm run build:code",
+    "build:code": "babel src --out-dir build --copy-files",
+    "clean": "rimraf build && mkdir build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -26,6 +27,7 @@
     "@babel/node": "^7.7.0",
     "@babel/preset-env": "^7.7.1",
     "@babel/register": "^7.7.4",
-    "nodemon": "^2.0.1"
+    "nodemon": "^2.0.1",
+    "rimraf": "^3.0.0"
   }
 }
