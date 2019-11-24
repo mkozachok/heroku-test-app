@@ -7,7 +7,6 @@ const create = function(data, callback) {
     if (callback) {
       callback(newProduct);
     }
-    console.log("Product created!");
   });
 };
 
