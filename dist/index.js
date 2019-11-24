@@ -31,4 +31,10 @@ if (process.env && process.env.ENV === "local") {
 }
 
 app.use(_api.router);
+app.get("/", function (req, res) {
+  return res.status(200).send({
+    success: "true",
+    message: "done"
+  });
+});
 app.listen(process.env.PORT || 5000);
