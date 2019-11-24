@@ -5,7 +5,11 @@
   "main": "src/index.js",
   "scripts": {
     "start:dev": "nodemon --exec babel-node src/index.js",
-    "start": "node build/index.js"
+    "start": "node build/index.js",
+    "2build": "npm run clean && npm run build:code",
+    "2build:code": "babel src --out-dir build --copy-files",
+    "2clean": "rimraf build && mkdir build",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",

@@ -21,11 +21,12 @@ app.use(_bodyParser["default"].urlencoded({
   extended: false
 }));
 
-if (process.env && process.env.ENV === "local") {
+if (process.env && process.env.ENV === "local2") {
   _mongoose["default"].connect(process.env.DB_CONNECT);
 } else {
   //Connect to mlab
-  _mongoose["default"].connect("mongodb+srv://mkozachok:MTeam2019@cluster0-klifg.mongodb.net/test?retryWrites=true&w=majority", {
+  _mongoose["default"].connect( // "mongodb+srv://mkozachok:MTeam2019@cluster0-klifg.mongodb.net/test?retryWrites=true&w=majority",
+  "mongodb+srv://admin:ndhFqHe53Er0bHGk@cluster0-xx9qb.mongodb.net/test?retryWrites=true&w=majority", {
     useNewUrlParser: true
   });
 }
