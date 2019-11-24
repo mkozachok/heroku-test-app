@@ -16,3 +16,4 @@ var productValidation = function productValidation(product) {
 };
 
 exports.productValidation = productValidation;
+//# sourceMappingURL=validation.js.map

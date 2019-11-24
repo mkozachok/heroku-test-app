@@ -16,3 +16,4 @@ var router = _express["default"].Router(); // Products
 
 exports.router = router;
 router.use("/products", _routes.productRouter);
+//# sourceMappingURL=index.js.map

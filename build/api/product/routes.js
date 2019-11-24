@@ -92,3 +92,4 @@ productRouter["delete"]("/:id", function (req, res) {
     });
   });
 });
+//# sourceMappingURL=routes.js.map

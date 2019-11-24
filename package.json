@@ -5,9 +5,9 @@
   "main": "src/index.js",
   "scripts": {
     "start:dev": "nodemon --exec babel-node src/index.js",
-    "start": "node ./dist/index.js",
-    "build": "babel src -d dist",
-    "clean": "rm -rf dist && mkdir dist",
+    "start": "node ./build/index.js",
+    "build": "babel -d ./build ./src -s",
+    "clean": "rm -rf build && mkdir build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
