@@ -4,7 +4,7 @@
   "description": "Manage products",
   "main": "src/index.js",
   "scripts": {
-    "start:dev": "nodemon --exec babel-node src/index.js",
+    "start:dev": "nodemon --exec && npm start",
     "start": "node build/index.js",
     "build": "npm run build:code",
     "build:code": "babel src --out-dir build --copy-files",

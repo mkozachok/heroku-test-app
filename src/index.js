@@ -11,16 +11,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-if (process.env && process.env.ENV === "local2") {
-  mongoose.connect(process.env.DB_CONNECT);
-} else {
-  //Connect to mlab
-  mongoose.connect(
-    // "mongodb+srv://mkozachok:MTeam2019@cluster0-klifg.mongodb.net/test?retryWrites=true&w=majority",
-    "mongodb+srv://admin:ndhFqHe53Er0bHGk@cluster0-xx9qb.mongodb.net/test?retryWrites=true&w=majority",
-    { useNewUrlParser: true }
-  );
-}
+mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true });
 
 app.use(router);
 app.get("/", (req, res) => {
