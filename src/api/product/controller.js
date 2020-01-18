@@ -1,3 +1,4 @@
+import mongoose from 'mongoose'
 import { Product } from "./model";
 
 const create = function(data, callback) {
@@ -11,6 +12,10 @@ const create = function(data, callback) {
 };
 
 const get = function(id, callback) {
+  const isValid = mongoose.Types.ObjectId.isValid(id)
+  if (!isValid) {
+    throw new Error('Invalid id')
+  }
   Product.findById(id, (err, product) => {
     if (err) throw err;
     callback(product);
@@ -47,10 +52,19 @@ const remove = function(id, callback) {
   });
 };
 
+const findByTitle = function(keywords, callback) {
+  const regEx = new RegExp(keywords, 'ig')
+  Product.find({title: regEx}, 'title price').exec((err, products) => {
+    if (err) throw err;
+    callback(products);
+  })
+}
+
 export const productApi = {
   get,
   getAll,
   create,
   update,
-  remove
+  remove,
+  findByTitle
 };

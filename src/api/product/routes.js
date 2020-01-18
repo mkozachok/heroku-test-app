@@ -15,8 +15,23 @@ productRouter.get("/", function(req, res) {
   });
 });
 
+productRouter.get("/search", function(req, res) {
+  const keywords = req.query.keywords;
+  if (!keywords) {
+    return res.status(404).send({
+      success: "false",
+      message: "keywords can not be empty"
+    });
+  }
+  productApi.findByTitle(keywords, data => {
+    console.log('data', data)
+    res.status(200).send(
+      {success: "true", data});
+  });
+});
+
 productRouter.get("/:id", function(req, res) {
-  var id = req.params.id;
+  const id = req.params.id;
   productApi.get(id, product => {
     if (product) {
       return res.status(200).send({ data: product });
